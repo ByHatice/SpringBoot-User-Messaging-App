@@ -1,11 +1,10 @@
-package se.iths.springbootusermessagingapp.message;
+package se.iths.springbootusermessagingapp.entities;
 
 import jakarta.persistence.*;
 import lombok.Getter;
 import lombok.Setter;
 import org.springframework.data.annotation.CreatedDate;
 import org.springframework.data.annotation.LastModifiedDate;
-import se.iths.springbootusermessagingapp.user.User;
 
 import java.time.Instant;
 
@@ -20,18 +19,21 @@ public class Message {
     private Long id;
 
     @Lob
-    @Column(name = "content")
+    @Column(name = "content", nullable = false)
     private String content;
 
     @ManyToOne(fetch = FetchType.LAZY, optional = false)
     @JoinColumn(name = "user_id", nullable = false)
     private User user;
 
-    private Boolean isPublic = false;
+    @Column(name = "is_public", nullable = false)
+    private Boolean isPublic;
 
+    @Column(name = "created_date",nullable = false)
     @CreatedDate
     private Instant createdDate;
 
+    @Column(name = "last_modified_date",nullable = false)
     @LastModifiedDate
     private Instant lastModifiedDate;
 

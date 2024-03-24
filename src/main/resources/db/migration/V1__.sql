@@ -1,7 +1,7 @@
 CREATE TABLE message
 (
     id                 BIGINT AUTO_INCREMENT NOT NULL,
-    content            LONGTEXT              NULL,
+    content            LONGTEXT              NOT NULL,
     user_id            BIGINT                NOT NULL,
     is_public          BIT(1)                NOT NULL,
     created_date       datetime              NOT NULL,
@@ -18,6 +18,12 @@ CREATE TABLE user
     email           VARCHAR(255)          NOT NULL,
     CONSTRAINT pk_user PRIMARY KEY (id)
 );
+
+ALTER TABLE user
+    ADD CONSTRAINT uc_user_email UNIQUE (email);
+
+ALTER TABLE user
+    ADD CONSTRAINT uc_user_user_name UNIQUE (user_name);
 
 ALTER TABLE message
     ADD CONSTRAINT FK_MESSAGE_ON_USER FOREIGN KEY (user_id) REFERENCES user (id);
