@@ -14,13 +14,10 @@ public class User {
     @Column(name = "id", nullable = false)
     private Long id;
 
-    @Column(name = "userName", nullable = false)
     private String userName;
 
-    @Column(name = "profilePicture")
     private String profilePicture;
 
-    @Column(name = "fullName", nullable = false)
     private String fullName;
 
     @Column(name = "email", nullable = false)
